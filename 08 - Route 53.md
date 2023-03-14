@@ -1,0 +1,137 @@
+Model: Default
+
+> ACT AS a profesional writter and transcribe, fix the identation the following text: Okay, hello Cloud Gurus and welcome to this lecture. In this lecture we're going to just review everything we've learnt in this section of the course around Route 53. So first thing I'd remember going into the exam is just understand the difference between an alias record and a C name and given the choice in a scenario based question always choose an alias record over a C name. Just remember that alias records are unique to AWS so it's a way of translating your naked domain name to a resource could be an elastic load balancer, an S3 bucket, etc. And it doesn't just have to be the naked domain name, it could also be a subdomain, so it could be mobile.hellocloudgurus123.com, etc. Whereas a C name only allows you to translate subdomain names from one to another, so M might go M.acloudguru.com might go to mobile.acloudguru.com, etc. But like I said, given the choice, always choose an alias record over a C name when you see mention of it in your exam. Also remember going into your exam the common DNS record types, we've got our start of authority record, we've got C names, we've got our NS records or name server records and the record that we've been using throughout the whole part of this course is our A records and A records essentially just turn our web addresses into IP addresses. So you have seven different routing policies available with Route 53 and you will need to know definitely six of them. So simple routing, weighted routing, latency-based routing, failover routing, geolocation routing, geo proximity routing, this is using traffic flow only. Like I said, that's a bit beyond the scope of this exam, so that's why I said you really only need to know six, but we cover it off just to be fully transparent of all the different routing algorithms with Route 53. And then we have multi value answer routing. Also remember going into your exam that registering a domain name, you can buy domain names directly with AWS and it can take up to three days to register. It just depends on the circumstances of the domain names. So before we go on to all our different routing policies and cover off what they are, just in a bit more detail, remember what health checks are. You can set a health check on individual record sets. and if a record sets fails a health check, it's going to be removed from Route 53 until it passes the health check, and you can even configure SNS notifications to alert you about failed health checks. So let's review our routing policies, and we'll start with simple routing policy. So if you choose simple routing policy, you can only have one record with multiple IP addresses. And if you specify multiple values in a record, Route 53 returns all values to the user in a random order. So we've got our user, they're going to hellocloudgurus123.com and we basically have different IP addresses in this one record set. So we've got 30.0.0.1 and 30.0.0.2. And basically Route 53 is gonna pick one of them randomly and return it to our user. So that's all simple routing policies are. They do not work with health checks and we'll come back to that later. Weighted routing policies. So in this example, we've got our user, They visit Route 53, and we want to send basically 20% of our user base off to US East 1, and 80% of our user base off to US West 1. So to do this, we basically use weighted routings. And I like to keep it simple. I like it all to add up to 100, but essentially, it will just take the weighting and add up the sum of all the weighting, and then divide by the individual weighting by that. And that's how it calculates the percentages. So if you see any scenario-based questions that's talking about you want to direct a certain percentage of your traffic to a particular region or availability zone or whatever, then I want you to think of weighted routing policies. Moving on to latency-based routing policies. So we've got our user, they're in South Africa, they're connecting into Route 53, they get a 54 millisecond latency when connecting into EU West 2 or 300 millisecond latency when connected into AP South East 2. So Route 53 will give them the lowest latency possible and we'll redirect them to EU West 2. So if you see an exam question that's talking about latency I want you to think about latency routing. That's going to be the correct answer. Failover routing, now if you remember we have our user and basically we've built our applications so that we've got an active passive setup. So our active might be in US West 1 or US West 2 and our passive setup might be in AP South East 2. And essentially failover routing will have a health check on each region and if we lose a region it will switch from our active site to our passive site automatically so it's a way of just failing over. So if you see mentioned in a scenario based question about how to failover from one site to another I want you to think of failover routing. Next we have geolocation routing so this is where we've got a group of customers they might be European customers and we want to only send them to our European web servers. It might be that those European web servers have been configured with euros or with the local languages, so it might be in French or Italian. And then we have our US-based customers and then they basically only want to go to our web servers in the US. So again you might get a scenario-based question where it's talking about how can you make sure that a group of users in a particular location only go to a group of web servers in a particular location. As soon as you hear the word location in a scenario-based questions talking about Route 53, I want you to think of geolocation routing. Geoproximity routing, this basically lets Amazon Route 53 route your traffic to resources based on the geographic location of your users and resources, but you can optionally choose to route more traffic or less traffic to given resources by specifying a value known as a bias. And a bias basically expands or shrinks the size of a geographic region from which traffic is routed to a resource. And to use geo proximity routing you must be using Route 53 traffic flow. Route 53 traffic flow was that GUI where we can do all kinds of complicated routing architectures with Route 53. And then finally, multivalure answer routing. So what is multivalure answer routing? Well we've got our user, they're connecting into hellocloudgurus.com or hellocloudgurus123.com. Our first IP address is 30.0.0.1. We then have a second record, which has got another IP address of 30.0.0.2. And we have health checks on each record. And so if we lose our first record, Route 53 will automatically just redirect all our traffic to the healthy instance at 30.0.0.2. So that is it for this section of the course. You've done really, really well. Hope you enjoyed it. And it's now time to move on to the next section. So if you've got the time, please join me in the next section. Thank you.
+
+Hello Cloud Gurus, and welcome to this lecture. In this lecture, we're going to review everything we've learned in this section of the course around Route 53.
+
+So the first thing to remember going into the exam is to understand the difference between an alias record and a C name. Given the choice in a scenario-based question, always choose an alias record over a C name. Just remember that alias records are unique to AWS, and it's a way of translating your naked domain name to a resource, which could be an elastic load balancer, an S3 bucket, etc. And it doesn't just have to be the naked domain name; it could also be a subdomain like mobile.hellocloudgurus123.com, etc.
+
+Whereas a C name only allows you to translate subdomain names from one to another, like M.acloudguru.com might go to mobile.acloudguru.com, etc. But like I said, given the choice, always choose an alias record over a C name when you see mention of it in your exam.
+
+Also, remember going into your exam the common DNS record types. We've got our start of authority record, C names, our NS records or name server records, and the record that we've been using throughout the whole part of this course is our A records, and A records essentially just turn our web addresses into IP addresses.
+
+So you have seven different routing policies available with Route 53, and you will need to know definitely six of them. So simple routing, weighted routing, latency-based routing, failover routing, geolocation routing, geo-proximity routing, and multi-value answer routing.
+
+Now, remember going into your exam that registering a domain name, you can buy domain names directly with AWS, and it can take up to three days to register. It just depends on the circumstances of the domain names.
+
+So before we go on to all our different routing policies and cover off what they are, just in a bit more detail, remember what health checks are. You can set a health check on individual record sets. If a record set fails a health check, it's going to be removed from Route 53 until it passes the health check, and you can even configure SNS notifications to alert you about failed health checks.
+
+So let's review our routing policies, and we'll start with simple routing policy. So if you choose simple routing policy, you can only have one record with multiple IP addresses. And if you specify multiple values in a record, Route 53 returns all values to the user in a random order.
+
+So we've got our user, they're going to hellocloudgurus123.com, and we basically have different IP addresses in this one record set. So we've got 30.0.0.1 and 30.0.0.2. And basically, Route 53 is going to pick one of them randomly and return it to our user. So that's all simple routing policies are. They do not work with health checks, and we'll come back to that later.
+
+Weighted routing policies. So in this example, we've got our user. They visit Route 53, and we want to send basically 20% of our user base off to US East 1, and 80% of our user base off to US West 1. So to do this, we basically use weighted routings. And I like to keep it simple. I like it all to add up to 100, but essentially, it will just take the weighting and add up the sum of all the weightings and then divide by the individual weighting by that. And that's how it calculates the percentages. So if you see any scenario-based questions that's talking about you want to direct a
+
+> continue
+
+certain percentage of your traffic to a particular region or availability zone or whatever, then I want you to think of weighted routing policies.
+
+Moving on to latency-based routing policies. So we've got our user, they're in South Africa, they're connecting into Route 53, they get a 54 millisecond latency when connecting into EU West 2 or 300 millisecond latency when connected into AP South East 2. So Route 53 will give them the lowest latency possible and we'll redirect them to EU West 2. So if you see an exam question that's talking about latency, I want you to think about latency routing. That's going to be the correct answer.
+
+Failover routing. Now if you remember, we have our user and basically, we've built our applications so that we've got an active-passive setup. So our active might be in US West 1 or US West 2, and our passive setup might be in AP South East 2. And essentially, failover routing will have a health check on each region, and if we lose a region, it will switch from our active site to our passive site automatically, so it's a way of just failing over. So if you see mentioned in a scenario-based question about how to failover from one site to another, I want you to think of failover routing.
+
+Next, we have geolocation routing, so this is where we've got a group of customers; they might be European customers, and we want to only send them to our European web servers. It might be that those European web servers have been configured with euros or with the local languages, so it might be in French or Italian. And then we have our US-based customers, and then they basically only want to go to our web servers in the US. So again you might get a scenario-based question where it's talking about how can you make sure that a group of users in a particular location only go to a group of web servers in a particular location. As soon as you hear the word location in a scenario-based question talking about Route 53, I want you to think of geolocation routing.
+
+Geo-proximity routing, this basically lets Amazon Route 53 route your traffic to resources based on the geographic location of your users and resources, but you can optionally choose to route more traffic or less traffic to given resources by specifying a value known as a bias. And a bias basically expands or shrinks the size of a geographic region from which traffic is routed to a resource. And to use geo-proximity routing, you must be using Route 53 traffic flow. Route 53 traffic flow was that GUI where we can do all kinds of complicated routing architectures with Route 53.
+
+Finally, multivalue answer routing. So what is multivalue answer routing? Well, we've got our user; they're connecting into hellocloudgurus.com or hellocloudgurus123.com. Our first IP address is 30.0.0.1. We then have a second record, which has got another IP address of 30.0.0.2. And we have health checks on each record. And so if we lose our first record, Route 53 will automatically just redirect all our traffic to the healthy instance at 30.0.0.2.
+
+That is it for this section of the course. You've done really, really well. I hope you enjoyed it. And it's now time to move on to the next section. So if you've got the time, please join me in the next section. Thank you.
+
+> now i want to use that text and I want you to act as a AWS Certified solution architect and that information about the certification's material for AWS Solution Architect Associated certification, check,verify and correct, the information if it’s necessary to have relevant and important information. If there is any information missing, add all necessary material to improve the study information, please list all the key points to lear/remember
+
+As an AWS Certified Solutions Architect, I can confirm that the information provided about Route 53 in the previous text is relevant and important for the AWS Solutions Architect Associate certification.
+
+Here are the key points to learn/remember:
+
+*   Understand the difference between an alias record and a C name. Given the choice in a scenario-based question, always choose an alias record over a C name.
+*   Common DNS record types: start of authority record, C names, NS records or name server records, and A records.
+*   Route 53 has seven different routing policies available, and you will need to know six of them: simple routing, weighted routing, latency-based routing, failover routing, geolocation routing, geo-proximity routing, and multi-value answer routing.
+*   Simple routing policy allows only one record with multiple IP addresses, and if you specify multiple values in a record, Route 53 returns all values to the user in a random order.
+*   Weighted routing policies allow you to direct a certain percentage of your traffic to a particular region or availability zone.
+*   Latency-based routing policies redirect users to the region with the lowest latency.
+*   Failover routing is an active-passive setup that switches from an active site to a passive site automatically if we lose a region.
+*   Geolocation routing allows you to direct users in a particular location to a group of web servers in that location.
+*   Geo-proximity routing routes traffic to resources based on the geographic location of your users and resources and uses a bias to route more or less traffic to given resources.
+*   Multivalue answer routing has health checks on each record and redirects traffic to the healthy instance if a record fails.
+
+Additionally, remember that you can buy domain names directly with AWS, and it can take up to three days to register. You can set a health check on individual record sets and configure SNS notifications to alert you about failed health checks. And finally, Route 53 Traffic Flow is a GUI where you can create complicated routing architectures with Route 53.
+
+> show the Key points to remember for the AWS Certified Solutions Architect - Associate certification in relation to the text, in tabular way, and add your recomendations to study on a secondary tab, do not include services out of the scope of the main text
+
+|     | Key Points to Remember                                                                                                                                                                                                    |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     | Understand the difference between an alias record and a C name, and choose an alias record over a C name in a scenario-based question.                                                                                    |
+|     | Know the common DNS record types: start of authority record, C names, NS records or name server records, and A records.                                                                                                   |
+|     | Know the seven different routing policies available with Route 53: simple routing, weighted routing, latency-based routing, failover routing, geolocation routing, geo-proximity routing, and multi-value answer routing. |
+|     | Understand the purpose and use of each routing policy.                                                                                                                                                                    |
+|     | Know that you can buy domain names directly with AWS and set a health check on individual record sets, and configure SNS notifications for failed health checks.                                                          |
+|     | Understand the use of Route 53 Traffic Flow to create complicated routing architectures.                                                                                                                                  |
+
+|     | Recommendation to study                                                                                                                                                      |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     | Familiarize yourself with the Route 53 service and the different routing policies available. Practice creating and configuring DNS records using the AWS Management Console. |
+|     | Understand the different types of DNS records and their purpose.                                                                                                             |
+|     | Review the Route 53 documentation and FAQs provided by AWS.                                                                                                                  |
+|     | Review the AWS Certified Solutions Architect - Associate exam guide and practice exams provided by AWS.                                                                      |
+|     | Attend AWS training courses or take online courses from reputable providers.                                                                                                 |
+|     | Join AWS community groups to network and share knowledge with other professionals.                                                                                           |
+
+
+> explain and describe all type of records that AWS Route 53 can handle and its benefits / caveats in tabular way
+
+
+| DNS Record Type | Description | Benefits | Caveats |
+| --- | --- | --- | --- |
+| A | Associates a domain name with an IPv4 address | Simple to set up and use | Cannot associate a domain name with an IPv6 address |
+| AAAA | Associates a domain name with an IPv6 address | Supports IPv6 addresses | Limited support for IPv6 in some regions |
+| CNAME | Associates a domain name with another domain name | Provides flexibility to change the resource to which a domain name points | Cannot be used to associate a domain name with an IP address |
+| MX | Specifies the mail exchange servers for a domain name | Enables email delivery to the correct email servers | Requires configuration of mail exchange servers |
+| NS | Specifies the name servers for a domain name | Enables delegation of a domain name to another DNS server | Cannot be used to associate a domain name with a resource |
+| SOA | Specifies information about the start of a zone of authority | Provides information about the DNS zone | Limited use in AWS Route 53 |
+| SRV | Specifies the location of a service on a domain name | Enables discovery of specific services on a domain name | Requires support from the application or service being used |
+| TXT | Associates arbitrary text with a domain name | Enables storage of text data on a domain name | Limited use in AWS Route 53 |
+```
+
+Overall, AWS Route 53 can handle a variety of DNS record types, providing flexibility in associating domain names with resources. Each record type has its own benefits and caveats, depending on the specific use case.
+
+For example, the A record type is simple to set up and use, but cannot associate a domain name with an IPv6 address. The CNAME record type provides flexibility to change the resource to which a domain name points, but cannot be used to associate a domain name with an IP address. The MX record type enables email delivery to the correct email servers but requires configuration of mail exchange servers.
+
+It is important to understand the benefits and caveats of each record type in order to choose the appropriate record type for a given use case.
+
+> continue
+
+Some additional information regarding DNS record types in AWS Route 53 includes:
+
+*   AAAA record type: This record type associates a domain name with an IPv6 address. It supports IPv6 addresses and is necessary for IPv6 connectivity. However, support for IPv6 is limited in some regions and may not be available in all cases.
+    
+*   CNAME record type: This record type associates a domain name with another domain name. It provides flexibility in changing the resource to which a domain name points, but it cannot be used to associate a domain name with an IP address directly. Also, using CNAME records can impact performance as it can lead to additional DNS queries.
+    
+*   MX record type: This record type specifies the mail exchange servers for a domain name. It enables email delivery to the correct email servers, but it requires configuration of mail exchange servers. Incorrect configuration of MX records can cause email delivery issues.
+    
+*   NS record type: This record type specifies the name servers for a domain name. It enables delegation of a domain name to another DNS server. However, it cannot be used to associate a domain name with a resource directly.
+    
+*   SOA record type: This record type specifies information about the start of a zone of authority. It provides information about the DNS zone and is used for administrative purposes. However, its use in AWS Route 53 is limited.
+    
+*   SRV record type: This record type specifies the location of a service on a domain name. It enables discovery of specific services on a domain name, but it requires support from the application or service being used.
+    
+*   TXT record type: This record type associates arbitrary text with a domain name. It enables storage of text data on a domain name and is often used for verification or validation purposes. However, its use in AWS Route 53 is limited.
+    
+
+Understanding the benefits and caveats of each DNS record type is crucial for configuring DNS records correctly in AWS Route 53. It is also important to keep in mind that Route 53 offers DNS resolution, domain registration, and health checking services, among others.
+
+> describe all Route 53 routing policies in tabular way, with description and details
+
+```
+| Routing Policy | Description | Details |
+| --- | --- | --- |
+| Simple Routing Policy | Associates a domain name with a resource, such as an IP address or an Amazon EC2 instance. | Can only have one record with multiple IP addresses. If multiple values are specified in a record, Route 53 returns all values to the user in a random order. Does not work with health checks. |
+| Weighted Routing Policy | Directs traffic to different resources based on weighted probabilities. | Enables distribution of traffic across multiple resources in a specified proportion. Can be used for A/B testing or can be used to direct a certain percentage of traffic to a particular region or availability zone. |
+| Latency-based Routing Policy | Directs traffic to the resource with the lowest latency to the user's location. | Measures the latency between the user's location and the available resources and directs traffic to the resource with the lowest latency. Can be used to direct traffic to a specific AWS region or an AWS CloudFront distribution. |
+| Failover Routing Policy | Redirects traffic to a secondary resource if the primary resource is unavailable. | Requires configuration of a primary and a secondary resource. If the primary resource fails a health check, traffic is automatically redirected to the secondary resource. Can be used to implement active-passive architectures or disaster recovery scenarios. |
+| Geolocation Routing Policy | Directs traffic based on the geographic location of the user. | Enables routing of traffic to specific resources based on the user's location, such as language or currency preference. Can be used to comply with regulatory requirements or to provide a better user experience. |
+| Geoproximity Routing Policy | Directs traffic based on the geographic location of both the user and the resource. | Enables routing of traffic based on geographic distance and a bias value, which determines the size of the geographic region from which traffic is routed to a resource. Can be used to improve the user experience or optimize resource utilization. Requires the use of Route 53 Traffic Flow. |
+| Multivalue Answer Routing Policy | Associates multiple IP addresses with a single resource. | Enables Route 53 to respond to DNS queries with multiple IP addresses for a given resource. If one IP address becomes unavailable, Route 53 returns one of the available IP addresses. Can be used to improve availability and performance of resources. Requires configuration of health checks. |
+```
+
+Understanding the different routing policies available in Route 53 is important for configuring the appropriate routing policy based on the specific use case. Each routing policy has its own benefits and caveats, such as the inability to work with health checks for the Simple Routing Policy or the requirement of configuration of a primary and secondary resource for the Failover Routing Policy. It is important to evaluate the specific requirements of the use case to determine the most appropriate routing policy.
